@@ -1,0 +1,25 @@
+package citasmedicas.modelo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class Sujeto {
+
+    private final List<Observador> observadores = new ArrayList<>();
+
+    public void agregarObservador(Observador o) {
+        if (o != null && !observadores.contains(o)) {
+            observadores.add(o);
+        }
+    }
+
+    public void quitarObservador(Observador o) {
+        observadores.remove(o);
+    }
+
+    protected void notificarObservadores() {
+        for (Observador o : new ArrayList<>(observadores)) {
+            o.actualizar();
+        }
+    }
+}
